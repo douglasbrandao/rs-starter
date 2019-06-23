@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Curso Javascript</title>
+    </head>
+    <body>
+        <script>
+
+            var endereco = {
+                rua: "Rua dos pinheiros",
+                numero: 1293,
+                bairro: "Centro",
+                cidade: "São Paulo",
+                uf: "SP"
+            };
+
+            var skills = ["Javascript", "ReactJS", "React Native"];
+
+            var anosEstudo = 1;
+
+            var usuarios = [
+                {
+                nome: "Diego",
+                habilidades: ["Javascript", "ReactJS", "Redux"]
+                },
+                {
+                nome: "Gabriel",
+                habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+                }
+            ];
+
+            // primeiro exercício
+            function retornaEnd(end){
+                return "O usuário mora em " + end.cidade + " / " + end.uf + 
+                " no bairro " + end.bairro + " , na rua " + 
+                end.rua + " com número " + end.numero + ".";
+            }
+            
+            // segundo exercício
+            function pares(x, y){
+                for(var i=x; i<=y; i++){
+                    if((i % 2) == 0){
+                        console.log(i);
+                    }
+                }
+            }
+
+            // terceiro exercício
+            function temHabilidade(skills){
+                return (skills.indexOf("Javascript") != -1) ? true : false;
+            }
+
+            // quarto exercício
+            function experiencia(anos){
+                if(anos > 0 && anos <= 1){
+                    return "Iniciante";
+                } else if(anos > 1 && anos <= 3){
+                    return "Intermediário";
+                } else if(anos > 3 && anos <= 6){
+                    return "Avançado";
+                } else if(anos >= 7){
+                    return "Jedi master";
+                }
+            }
+
+            // quinto exercício
+
+            for(let usuario of usuarios){
+                console.log("O " + usuario.nome + " possui as habilidades: " + usuario.habilidades.join(', '));
+            }
+            
+            // chamada das funções
+
+            //console.log(retornaEnd(endereco));
+            //pares(32, 321);
+            //console.log(temHabilidade(skills));
+            //console.log(experiencia(anosEstudo));
+        </script>
+    </body>
+</html>
