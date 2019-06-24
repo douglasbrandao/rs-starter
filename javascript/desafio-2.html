@@ -63,6 +63,18 @@
 
             // desafio 4
 
+            inputElement = document.querySelector('input');
+            
+            function adicionar(){
+                liElement = document.createElement('li');
+                var textElement = document.createTextNode(inputElement.value);
+
+                liElement.appendChild(textElement);
+                ulElement.appendChild(liElement);
+
+                inputElement.value = "";
+            }
+
         </script>
     </body>
 </html>
