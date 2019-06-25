@@ -2,7 +2,7 @@ var inputElement = document.querySelector('input');
 var ulElement = document.querySelector('ul');
 var container = document.querySelector('#repos');
 
-// desafio 1
+// desafio 2 e 3 do módulo 4
 
 function pegarGit(){
     var login_git = inputElement.value;
@@ -45,8 +45,6 @@ function renderRepos(datas){
 
     container.appendChild(ulElement);
 }
-
-// desafio 2 e 3
 
 // função texto para carregamento
 
