@@ -1,15 +1,20 @@
 "use strict";
 
-var arr = [1, 3, 4, 5, 8, 9];
-var newArr = arr.map(function (item) {
-  return item * 2;
-});
-console.log(newArr);
+function soma() {
+  var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+  // função normal
+  return a + b;
+}
 
-var teste = function teste() {
-  return {
-    nome: 'Douglas'
-  };
-};
+var soma2 = function soma2() {
+  var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+  return a + b;
+}; // arrow function
 
-console.log(teste());
+
+console.log(soma(1));
+console.log(soma());
+console.log(soma2(1));
+console.log(soma2());

@@ -1,9 +1,11 @@
-const arr = [1, 3, 4, 5, 8, 9];
+function soma(a = 3, b = 6){ // função normal
+    return a + b;
+}
 
-const newArr = arr.map((item) => item * 2);
+const soma2 = (a = 3, b = 6) => a + b; // arrow function
 
-console.log(newArr);
+console.log(soma(1));
+console.log(soma());
 
-const teste = () => ({nome: 'Douglas'});
-
-console.log(teste());
+console.log(soma2(1));
+console.log(soma2());
