@@ -1,11 +1,30 @@
-function soma(a = 3, b = 6){ // função normal
-    return a + b;
+const usuario = {
+    nome: 'Douglas',
+    idade: 27,
+    endereco: {
+        cidade: 'Cuiabá',
+        estado: 'MT'
+    },
+};
+
+/*
+const nome = usuario.nome;
+const idade = usuario.idade;
+const cidade = usuario.endereco.cidade;
+*/
+
+//console.log(nome, idade, cidade);
+
+// Desestruturação
+
+/*
+const { nome, idade, endereco: { cidade } } = usuario;
+
+console.log(nome, idade, cidade);
+*/
+
+function mostraNome({ nome, idade }){ // desestruturação por parâmetros em funções
+    console.log(nome, idade);
 }
 
-const soma2 = (a = 3, b = 6) => a + b; // arrow function
-
-console.log(soma(1));
-console.log(soma());
-
-console.log(soma2(1));
-console.log(soma2());
+mostraNome(usuario);
