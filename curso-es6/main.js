@@ -1,8 +1,18 @@
+// OBJECT SHORT SYNTAX
+
 const nome = 'Diego';
 const idade = 23;
 
-// TEMPLATE LITERALS utilizamos crase ao invés de aspas
+/*const usuario = {
+    nome: nome,
+    idade: idade,
+    empresa: 'Rocketseat'
+};*/
 
-//console.log('Meu nome é ' + nome + ' e tenho ' + idade + ' anos!');
+const usuario = {
+    nome,
+    idade,
+    empresa: 'Rocketseat'
+};
 
-console.log(`Meu nome é ${nome} e tenho ${idade} anos`);
+console.log(usuario);
