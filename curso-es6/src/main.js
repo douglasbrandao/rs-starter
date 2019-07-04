@@ -1,10 +1,22 @@
-import ClasseUsuario, { idade, idade as IdadeUsuario } from './functions';
+const minhaPromise = () => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('OK')
+    }, 2000);
+});
 
-// desafio modulo 2 ex 1.1
-ClasseUsuario.info();
+/* async function executaPromise(){
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+}
+*/
 
-// desafio modulo 2 ex 1.2
-document.getElementById('tela').innerHTML = idade;
+// utilizando arrow functions
 
-// desafio modulo 2 ex 1.3
-console.log(IdadeUsuario);
+const executaPromise = async() => {
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+    console.log(await minhaPromise());
+}
+
+executaPromise();
