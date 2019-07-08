@@ -1,62 +1,86 @@
-// desafio 1 do módulo 3
+import api from './api';
 
-/* const delay = () => new Promise(resolve => setTimeout(resolve, 1000));
-
-async function umPorSegundo(){
-    await delay();
-    console.log('1s');
-    await delay();
-    console.log('2s');
-    await delay();
-    console.log('3s');
-}
-
-umPorSegundo(); */
-
-// desafio 2 do módulo 3
-
-/* import axios from 'axios';
-
- async function getUserFromGithub(user){
-    try{
-        const response = await axios.get(`https://api.github.com/users/${user}`);
-        console.log(response.data);
-    } catch(erro){
-        console.warn(`O usuário não existe!`);
+class App{
+    constructor(){
+        this.repositories = [];
+        this.formEl = document.getElementById('repo-form');
+        this.inputEl = document.querySelector('input[name=repository]');
+        this.listEl = document.getElementById('repo-list');
+        this.registerHandlers();
     }
-}
 
-getUserFromGithub('douglasbrandao'); */
+    registerHandlers(){
+        this.formEl.onsubmit = event => this.addRepository(event);
+    }
 
-// desafio 3 do módulo 3
-
-/* import axios from 'axios';
-
-class Github {
-    static async getRepositories(repo){
-        try{
-            const response = await axios.get(`https://api.github.com/repos/${repo}`);
-            console.log(response.data);
-        } catch(erro){
-            console.warn('Repositório não existe');
+    setLoading(loading = true){
+        if(loading == true){
+            let loadingElement = document.createElement('span');
+            loadingElement.appendChild(document.createTextNode('Carregando...'));
+            loadingElement.setAttribute('id', 'loading');
+            this.formEl.appendChild(loadingElement);
+        } else{
+            document.getElementById('loading').remove();
         }
     }
-}
 
-Github.getRepositories('douglasbrandao/minicurso-django');
-Github.getRepositories('rocketseat/dslkvmskv'); */
+    async addRepository(event){
+        event.preventDefault();
 
-// desafio 4 modulo 4
+        const repoInput = this.inputEl.value;
 
-/* import axios from 'axios';
+        if(repoInput.length === 0)
+            return;
 
-const buscaUsuario = async usuario => {
-    try{
-        const response = await axios.get(`https://api.github.com/users/${usuario}`);
-        console.log(response);
-    } catch(erro){
-        console.warn('Usuário não existe');
+        this.setLoading();
+
+        try{
+            const response = await api.get(`/repos/${repoInput}`);
+
+            const { name, description, html_url, owner: { avatar_url }} = response.data;
+
+            this.repositories.push({
+                name,
+                description,
+                avatar_url,
+                html_url
+            });
+
+            this.inputEl.value = '';
+            this.render();
+        } catch(error){
+            alert('O repositório não existe');
+        }
+
+        this.setLoading(false);
+    }
+
+    render(){
+        this.listEl.innerHTML = '';
+        this.repositories.forEach(repo => {
+            let imgEl = document.createElement('img');
+            imgEl.setAttribute('src', repo.avatar_url);
+            
+            let titleEl = document.createElement('strong');
+            titleEl.appendChild(document.createTextNode(repo.name));
+
+            let descriptionEl = document.createElement('p');
+            descriptionEl.appendChild(document.createTextNode(repo.description));
+
+            let linkEl = document.createElement('a');
+            linkEl.setAttribute('target', '_blank');
+            linkEl.setAttribute('href', repo.html_url);
+            linkEl.appendChild(document.createTextNode('Acessar'));
+
+            let listItemEl = document.createElement('li');
+            listItemEl.appendChild(imgEl);
+            listItemEl.appendChild(titleEl);
+            listItemEl.appendChild(descriptionEl);
+            listItemEl.appendChild(linkEl);
+
+            this.listEl.appendChild(listItemEl);
+        })
     }
 }
 
-buscaUsuario('douglasbrandao'); */
+new App();
